@@ -79,7 +79,6 @@ public class Screen_3 extends JFrame {
 		
 		
 		//좌석 배정
-		
 		Seat s = save;		// Seat 생성자 s
 		int test = 0;
 		
@@ -121,7 +120,7 @@ public class Screen_3 extends JFrame {
 			stack.push("D7");
 			stack.push("D8");
 		}
-
+		//영화 별로 배정된 좌석 정보를 저장
 		if(n==1) {
 			for(int a=0;a<s.getSave1();a++) {
 				System.out.println(stack.pop());
@@ -147,7 +146,6 @@ public class Screen_3 extends JFrame {
 				System.out.println(stack.pop());
 			}
 		}
-
 		
 		//[현재 페이지 표시] 패널 생성 및 설정
 		page.setBounds(1100-143,25,108,30);
