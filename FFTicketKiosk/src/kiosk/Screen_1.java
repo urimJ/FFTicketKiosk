@@ -283,17 +283,54 @@ public class Screen_1 extends JFrame {
       btn_img_3.setVerticalTextPosition(JButton.BOTTOM);
       btn_img_4.setVerticalTextPosition(JButton.BOTTOM);
       btn_img_5.setVerticalTextPosition(JButton.BOTTOM);
+      
+      //버튼 색깔 오류 방지
+      btn_img_1.setBackground(null);
+      btn_img_2.setBackground(null);
+      btn_img_3.setBackground(null);
+      btn_img_4.setBackground(null);
+      btn_img_5.setBackground(null);
 
- 
+      //버튼 글씨 색깔 오류 방지
+      btn_img_1.setForeground(Color.black);
+      btn_img_2.setForeground(Color.black);
+      btn_img_3.setForeground(Color.black);
+      btn_img_4.setForeground(Color.black);
+      btn_img_5.setForeground(Color.black);
+      
+      //좌석 매진 시 예외 처리
+      String sO = "매진";		//soldOut
+      if(save1.getSave1()==-100) {			//OR Stack empty
+    	  btn_img_1.setEnabled(false);
+    	  btn_img_1.setText(sO);
+      }
+      if(save1.getSave2()==-100) {
+    	  btn_img_2.setEnabled(false);
+    	  btn_img_2.setText(sO);
+      }
+      if(save1.getSave3()==-100) {
+    	  btn_img_3.setEnabled(false);
+    	  btn_img_3.setText(sO);
+      }
+      if(save1.getSave4()==-100) {
+    	  btn_img_4.setEnabled(false);
+    	  btn_img_4.setText(sO);
+      }
+      if(save1.getSave5()==-100) {
+    	  btn_img_5.setEnabled(false);
+    	  btn_img_5.setText(sO);
+      }
+      
+      
         //1번 영화의 경우
         btn_img_1.addActionListener(new ActionListener(){
            @Override
            public void actionPerformed(ActionEvent e) {
               String moviedata = btn_img_1.getText();
-              //ImageIcon movieimage = btn_img_1.get();
+            
               new Screen_2(1, save1);
               setVisible(false);
-              //JOptionPane.showMessageDialog(btn_img_1, moviedata);
+              
            }
         });
 
@@ -301,11 +338,10 @@ public class Screen_1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                String moviedata = btn_img_2.getText();
-               //ImageIcon movieimage = btn_img_1.get();
+               
                new Screen_2(2, save1);
                setVisible(false);
 
-               //JOptionPane.showMessageDialog(btn_img_1, moviedata);
             }
          });
         
@@ -313,10 +349,10 @@ public class Screen_1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                String moviedata = btn_img_3.getText();
-               //ImageIcon movieimage = btn_img_1.get();
+               
                new Screen_2(3, save1);
                setVisible(false);
-               //JOptionPane.showMessageDialog(btn_img_1, moviedata);
+               
             }
          });
         
@@ -324,10 +360,10 @@ public class Screen_1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                String moviedata = btn_img_4.getText();
-               //ImageIcon movieimage = btn_img_1.get();
+              
                new Screen_2(4, save1);
                setVisible(false);
-               //JOptionPane.showMessageDialog(btn_img_1, moviedata);
+               
             }
          });
         
@@ -335,10 +371,10 @@ public class Screen_1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                String moviedata = btn_img_5.getText();
-               //ImageIcon movieimage = btn_img_1.get();
+               
                new Screen_2(5, save1);
                setVisible(false);
-               //JOptionPane.showMessageDialog(btn_img_1, moviedata);
+               
             }
          });
    }

@@ -163,7 +163,7 @@ public class Screen_2_Money extends JFrame {
 
     Screen_2_Money(){}
    
-	Screen_2_Money(int n, int in, int out, Seat s){
+	Screen_2_Money(int n, int in, int out, Seat s, String t1, String t2, String t3, String t4){
 		Seat a =s;
 		setTitle("¿µÈ­Á¦ Æ¼ÄÏ ÆÇ¸Å Å°¿À½ºÅ©");
 
@@ -346,74 +346,6 @@ public class Screen_2_Money extends JFrame {
 		back_button.setEnabled(false);
 		add(back_button);
 
-		
-
-//		//movie_info ¼³Á¤
-//
-//		movie_info.setLayout(null);
-//
-//		movie_info.setLocation(180,180 );
-//
-//		movie_info.setSize(300, 270);
-//
-//		movie_info.setBackground(Color.white);
-//
-//		c.add(movie_info);
-//
-//		
-//		//info_box ¼³Á¤
-//
-//		info_box.setLayout(null);
-//
-//		info_box.setLocation(180,480 );
-//
-//		info_box.setSize(300, 100);
-//
-//		info_box.setBackground(Color.white);
-//
-//		//title2.setVisible(true);
-//
-//		add(info_box);		
-//
-//		
-//
-//		//info ¼³Á¤
-//
-//		info.setHorizontalAlignment(JLabel.CENTER);
-//
-//		info.setSize(250, 100);
-//
-//		info.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
-//
-//		info.setForeground(Color.black);
-//
-//		//title.add(title_l);
-//
-//		info_box.add(info);
-//
-//
-//		// ÃÑ ±Ý¾×
-//
-//		total_price.setLocation(520,380);
-//
-//		total_price.setSize(100,100);
-//
-//		total_price.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 21));
-//
-//		c.add(total_price);
-//
-//		
-//
-//		price.setLocation(610,380);
-//
-//		price.setSize(100,100);
-//
-//		price.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 26));
-//
-//		c.add(price);
-
-
-
 		//¹öÆ° Çö±Ý
 
 		money.setBounds(650, 490, 130, 80);
@@ -486,7 +418,7 @@ public class Screen_2_Money extends JFrame {
 
                            public void actionPerformed(ActionEvent e) {
 
-                               new Screen_3(n,in,out,a);
+                               new Screen_3(n,in,out,a, t1, t2, t3, t4);
               
                                setVisible(false);
 			}
