@@ -9,8 +9,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
-
-
+import java.util.Stack;
 
 import javax.swing.Icon;
 
@@ -23,17 +22,29 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
 
 
 
 public class Screen_2 extends JFrame {
 	
+	//좌석 배정
+	Stack<String> stack=new Stack();
+	int nth = 0;
+	Seat s;
+	int nthRemain = 0;
+	String t1 = "";
+	String t2 = "";
+	String t3 = "";
+	String t4 = "";
+	
+	
 	int ticket_number=0;
 
 	int ticket_number1=0;
-
-
+	
 
 	//[키오스크명] 생성
 
@@ -148,10 +159,12 @@ public class Screen_2 extends JFrame {
 		
 	}
 	
+	
 	//영화별로 포스터, 영화명 정보 넘겨 받기
 	Screen_2(int n, Seat a){
 		
-		Seat s = a;
+		s = a;
+		
 		if(n==1) {
 
 			ImageIcon movieImg = new ImageIcon("images/그림1.jpg");
@@ -159,8 +172,10 @@ public class Screen_2 extends JFrame {
 			movieImgButton.setBounds(0, 0, 300, 300);
 			movieImgButton.setBorderPainted(false);
 			movieImgButton.setFocusPainted(false);
+			movieImgButton.setBackground(null);
 			movie_info.add(movieImgButton);
 			movie_title.setText("<HTML>덤블도어의 비밀<br>13:00 ~ 14:40 </HTML>");
+			nth = n;
 			
 		} else if(n==2) {
 			
@@ -169,8 +184,10 @@ public class Screen_2 extends JFrame {
 			movieImgButton.setBounds(0, 0, 300, 300);
 			movieImgButton.setBorderPainted(false);
 			movieImgButton.setFocusPainted(false);
+			movieImgButton.setBackground(null);
 			movie_info.add(movieImgButton);
 			movie_title.setText("<HTML>위대한 계약<br>14:50 ~ 16:00 </HTML>");
+			nth = n;
 			
 		} else if(n==3) {
 			
@@ -179,8 +196,10 @@ public class Screen_2 extends JFrame {
 			movieImgButton.setBounds(0, 0, 300, 300);
 			movieImgButton.setBorderPainted(false);
 			movieImgButton.setFocusPainted(false);
+			movieImgButton.setBackground(null);
 			movie_info.add(movieImgButton);
 			movie_title.setText("<HTML>말임씨를 부탁해<br>16:20 ~ 16:50 </HTML>");
+			nth = n;
 			
 		} else if(n==4) {
 			movie_title.setText("<HTML>모비우스<br>17:00 ~ 17:50 </HTML>");
@@ -189,7 +208,9 @@ public class Screen_2 extends JFrame {
 			movieImgButton.setBounds(0, 0, 300, 300);
 			movieImgButton.setBorderPainted(false);
 			movieImgButton.setFocusPainted(false);
+			movieImgButton.setBackground(null);
 			movie_info.add(movieImgButton);
+			nth = n;
 			
 		} else {
 			movie_title.setText("<HTML>수퍼소닉 2<br>18:00 ~ 19:40 </HTML>");
@@ -198,7 +219,9 @@ public class Screen_2 extends JFrame {
 			movieImgButton.setBounds(0, 0, 300, 300);
 			movieImgButton.setBorderPainted(false);
 			movieImgButton.setFocusPainted(false);
+			movieImgButton.setBackground(null);
 			movie_info.add(movieImgButton);
+			nth = n;
 		}
 
 		setTitle("영화제 티켓 판매 키오스크");
@@ -452,17 +475,18 @@ public class Screen_2 extends JFrame {
 		plus_button.setLocation(740, 270);
 
 		plus_button.setSize(50,50);
-
+		plus_button.setBackground(null);	//버튼 색 오류 방지
 		c.add(plus_button);
 
 		plus_button.addActionListener(new inner_MyActionListener());
+		
 
 		
 
 		minus_button.setLocation(640, 270);
 
 		minus_button.setSize(50, 50);
-
+		minus_button.setBackground(null);		//버튼 색 오류 방지
 		c.add(minus_button);
 
 		minus_button.addActionListener(new inner_MyActionListener());
@@ -496,7 +520,8 @@ public class Screen_2 extends JFrame {
 		plus1_button.setLocation(740, 340);
 
 		plus1_button.setSize(50,50);
-
+		plus_button.setBackground(null);	//버튼 색 오류 방지
+		plus_button.setBackground(new JButton().getBackground());
 		c.add(plus1_button);
 
 		plus1_button.addActionListener(new outer_MyActionListener());
@@ -506,7 +531,8 @@ public class Screen_2 extends JFrame {
 		minus1_button.setLocation(640, 340);
 
 		minus1_button.setSize(50, 50);
-
+		minus_button.setBackground(null);		//버튼 색 오류 방지
+		minus_button.setBackground(new JButton().getBackground());
 		c.add(minus1_button);
 
 		minus1_button.addActionListener(new outer_MyActionListener());
@@ -565,17 +591,70 @@ public class Screen_2 extends JFrame {
 
 		add(money);
 		
+		
+				
 		//팝업
 		//Screen_2_Money로 창 전환
 		money.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Screen_2_Money(n, ticket_number,ticket_number1, s);
+				if(n==1) {
+					s.setSave1(s.getSave1()+ticket_number+ticket_number1);
+					if(nthRemain==ticket_number+ticket_number1) {
+						s.setSave1(-100);
+					}
+				}
+				if(n==2) {
+					s.setSave2(s.getSave2()+ticket_number+ticket_number1);
+					if(nthRemain==ticket_number+ticket_number1) {
+						s.setSave2(-100);
+					}
+				}
+				if(n==3) {
+					s.setSave3(s.getSave3()+ticket_number+ticket_number1);
+					if(nthRemain==ticket_number+ticket_number1) {
+						s.setSave3(-100);
+					}
+				}
+				if(n==4) {
+					s.setSave4(s.getSave4()+ticket_number+ticket_number1);
+					if(nthRemain==ticket_number+ticket_number1) {
+						s.setSave4(-100);
+					}
+				}
+				if(n==5) {
+					s.setSave5(s.getSave5()+ticket_number+ticket_number1);
+					if(nthRemain==ticket_number+ticket_number1) {
+						s.setSave5(-100);
+					}
+				}
+				
+				//stack과 반복문을 이용한 좌석 배정
+				for(int i=0;i<ticket_number+ticket_number1;i++) {
+					int k = i+1;
+				
+					if(k<11) {
+						t1 += stack.pop();
+						t1 += " ";
+					}else if(k>10 && k<21) {
+						t2 += stack.pop();
+						t2 += " ";
+					}else if(k>20 && k<31) {							
+						t3 += stack.pop();
+						t3 += " ";
+					}else {
+						t4 += stack.pop();
+						t4 += " ";
+					}
+				}
+				
+				
+			
+				new Screen_2_Money(n, ticket_number,ticket_number1, s, t1, t2, t3, t4);
 				setVisible(false);
 			}
 		});
 
-		
 
 		//버튼 card
 
@@ -594,7 +673,58 @@ public class Screen_2 extends JFrame {
 		card.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Screen_2_Card(n, ticket_number,ticket_number1, s);
+				if(n==1) {
+					s.setSave1(s.getSave1()+ticket_number+ticket_number1);
+					if(nthRemain==ticket_number+ticket_number1) {
+						s.setSave1(-100);
+					}
+				}
+				if(n==2) {
+					s.setSave2(s.getSave2()+ticket_number+ticket_number1);
+					if(nthRemain==ticket_number+ticket_number1) {
+						s.setSave2(-100);
+					}
+				}
+				if(n==3) {
+					s.setSave3(s.getSave3()+ticket_number+ticket_number1);
+					if(nthRemain==ticket_number+ticket_number1) {
+						s.setSave3(-100);
+					}
+				}
+				if(n==4) {
+					s.setSave4(s.getSave4()+ticket_number+ticket_number1);
+					if(nthRemain==ticket_number+ticket_number1) {
+						s.setSave4(-100);
+					}
+				}
+				if(n==5) {
+					s.setSave5(s.getSave5()+ticket_number+ticket_number1);
+					if(nthRemain==ticket_number+ticket_number1) {
+						s.setSave5(-100);
+					}
+				}
+				
+				//stack과 반복문을 이용한 좌석 배정
+				for(int i=0;i<ticket_number+ticket_number1;i++) {
+					int k = i+1;
+
+					if(k<11) {
+						t1 += stack.pop();
+						t1 += " ";
+					}else if(k>10 && k<21) {
+						t2 += stack.pop();
+						t2 += " ";
+					}else if(k>20 && k<31) {							
+						t3 += stack.pop();
+						t3 += " ";
+					}else {
+						t4 += stack.pop();
+						t4 += " ";
+					}
+				}
+				
+				
+				new Screen_2_Card(n, ticket_number,ticket_number1, s, t1, t2, t3, t4);
 				setVisible(false);
 			}
 		});
@@ -619,7 +749,94 @@ public class Screen_2 extends JFrame {
 	                           setVisible(false);
 			}
 		});	
+	
+		
+		//stack
+		if(stack.isEmpty()){
+			stack.push("A8");
+			stack.push("A7");
+			stack.push("A6");
+			stack.push("A5");
+			stack.push("A4");
+			stack.push("A3");
+			stack.push("A2");
+			stack.push("A1");
+			
+			stack.push("B1");
+			stack.push("B2");
+			stack.push("B3");
+			stack.push("B4");
+			stack.push("B5");
+			stack.push("B6");
+			stack.push("B7");
+			stack.push("B8");
+			
+			stack.push("C8");
+			stack.push("C7");
+			stack.push("C6");
+			stack.push("C5");
+			stack.push("C4");
+			stack.push("C3");
+			stack.push("C2");
+			stack.push("C1");
+			
+			stack.push("D1");
+			stack.push("D2");
+			stack.push("D3");
+			stack.push("D4");
+			stack.push("D5");
+			stack.push("D6");
+			stack.push("D7");
+			stack.push("D8");
+		}
+		
+		//영화 별로 이미 배정된 좌석을 제외하기
+		if(n==1) {
+			for(int k=0;k<s.getSave1();k++) {
+				System.out.println(stack.pop());
+			}
+		}
+		if(n==2) {
+			for(int k=0;k<s.getSave2();k++) {
+				System.out.println(stack.pop());
+			}
+		}
+		if(n==3) {
+			for(int k=0;k<s.getSave3();k++) {
+				System.out.println(stack.pop());
+			}
+		}
+		if(n==4) {
+			for(int k=0;k<s.getSave4();k++) {
+				System.out.println(stack.pop());
+			}
+		}
+		if(n==5) {
+			for(int k=0;k<s.getSave5();k++) {
+				System.out.println(stack.pop());
+			}
+		}
+		switch(nth) {
+		case 1:
+			nthRemain = 32- s.getSave1();
+			break;
+		case 2:
+			nthRemain = 32- s.getSave2();
+			break;
+		case 3:
+			nthRemain = 32- s.getSave3();
+			break;
+		case 4:
+			nthRemain = 32- s.getSave4();
+			break;
+		case 5:
+			nthRemain = 32- s.getSave5();
+			break;
+		}
+	
 	}
+		
+	
 
 
 
@@ -640,12 +857,30 @@ public class Screen_2 extends JFrame {
 			
 
 			if(plus_button.getText().equals("+")) {
+				
+				if(nthRemain>ticket_number+ticket_number1) {
+					ticket_number=ticket_number+1;
 
-				ticket_number=ticket_number+1;
+					ticketnumber.setText(String.valueOf(ticket_number));
 
-				ticketnumber.setText(String.valueOf(ticket_number));
+					price.setText(String.valueOf(ticket_number*5000+ticket_number1*6000));
+				}else if(nthRemain==ticket_number+ticket_number1) {
+					// 다이얼로그의 확인 버튼 색상, 버튼 폰트
+		            UIManager.put("Button.background", new Color(0x3333FF));
+		            UIManager.put("OptionPane.buttonFont", new FontUIResource(new Font("맑은 고딕", Font.PLAIN, 20)));
+		            UIManager.put("Button.foreground", new Color(0xFFFFFF));
+		            
+					// 다이얼로그 라벨, 라벨 폰트
+		            JLabel noSeat = new JLabel("남은 자리가 없어 더 이상 추가할 수 없습니다.");
+		            noSeat.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		            
+		            // 다이얼로그 띄우기
+		            JOptionPane.showMessageDialog(Screen_2, noSeat);
 
-				price.setText(String.valueOf(ticket_number*5000+ticket_number1*6000));
+				}else {
+					
+				}
+				
 
 			}
 
@@ -668,26 +903,39 @@ public class Screen_2 extends JFrame {
 	}
 
 	class outer_MyActionListener implements ActionListener{
-
-
-
 		@Override
-
 		public void actionPerformed(ActionEvent e) {
 
 			// TODO Auto-generated method stub
 
 			plus1_button=(JButton)(e.getSource());
-
 			minus1_button=(JButton)(e.getSource());
 
 			if(plus1_button.getText().equals("+")) {
+				if(nthRemain>ticket_number+ticket_number1) {
+					ticket_number1=ticket_number1+1;
 
-				ticket_number1=ticket_number1+1;
+					ticketnumber1.setText(String.valueOf(ticket_number1));
 
-				ticketnumber1.setText(String.valueOf(ticket_number1));
+					price.setText(String.valueOf(ticket_number*5000+ticket_number1*6000));
+					
+				}else if(nthRemain==ticket_number+ticket_number1) {
+					// 다이얼로그의 확인 버튼 색상, 버튼 폰트
+		            UIManager.put("Button.background", new Color(0x3333FF));
+		            UIManager.put("OptionPane.buttonFont", new FontUIResource(new Font("맑은 고딕", Font.PLAIN, 20)));
+		            UIManager.put("Button.foreground", new Color(0xFFFFFF));
+		            
+					// 다이얼로그 라벨, 라벨 폰트
+		            JLabel noSeat = new JLabel("남은 자리가 없어 더 이상 추가할 수 없습니다.");
+		            noSeat.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		            
+		            // 다이얼로그 띄우기
+		            JOptionPane.showMessageDialog(Screen_2, noSeat);
+				}else {
+					
+				}
 
-				price.setText(String.valueOf(ticket_number*5000+ticket_number1*6000));
+				
 
 			}
 
@@ -706,8 +954,12 @@ public class Screen_2 extends JFrame {
 			}
 
 		}
-
+			
 	}
+
+
+	
+
 	
 	
 	

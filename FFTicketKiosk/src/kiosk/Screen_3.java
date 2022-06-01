@@ -10,7 +10,7 @@ import java.util.Stack;
 //화면3 프레임
 public class Screen_3 extends JFrame {
 
-	Stack<String> stack=new Stack();
+	//Stack<String> stack=new Stack();
 
 	Screen_3(){}
 
@@ -62,7 +62,7 @@ public class Screen_3 extends JFrame {
 	
 	JFrame Screen_3 = new JFrame();
 	
-	public Screen_3(int n, int inner, int outer,Seat save) {
+	public Screen_3(int n, int inner, int outer,Seat save, String t1, String t2, String t3, String t4) {
 		
 		//전체 프레임 설정
 		setTitle("영화제 티켓 판매 키오스크");
@@ -80,73 +80,8 @@ public class Screen_3 extends JFrame {
 		
 		//좌석 배정
 		Seat s = save;		// Seat 생성자 s
-		int test = 0;
 		
-		//stack
-		if(stack.isEmpty()){
-			stack.push("A8");
-			stack.push("A7");
-			stack.push("A6");
-			stack.push("A5");
-			stack.push("A4");
-			stack.push("A3");
-			stack.push("A2");
-			stack.push("A1");
-			
-			stack.push("B1");
-			stack.push("B2");
-			stack.push("B3");
-			stack.push("B4");
-			stack.push("B5");
-			stack.push("B6");
-			stack.push("B7");
-			stack.push("B8");
-			
-			stack.push("C8");
-			stack.push("C7");
-			stack.push("C6");
-			stack.push("C5");
-			stack.push("C4");
-			stack.push("C3");
-			stack.push("C2");
-			stack.push("C1");
-			
-			stack.push("D1");
-			stack.push("D2");
-			stack.push("D3");
-			stack.push("D4");
-			stack.push("D5");
-			stack.push("D6");
-			stack.push("D7");
-			stack.push("D8");
-		}
-		//영화 별로 배정된 좌석 정보를 저장
-		if(n==1) {
-			for(int a=0;a<s.getSave1();a++) {
-				System.out.println(stack.pop());
-			}
-		}
-		if(n==2) {
-			for(int a=0;a<s.getSave2();a++) {
-				System.out.println(stack.pop());
-			}
-		}
-		if(n==3) {
-			for(int a=0;a<s.getSave3();a++) {
-				System.out.println(stack.pop());
-			}
-		}
-		if(n==4) {
-			for(int a=0;a<s.getSave4();a++) {
-				System.out.println(stack.pop());
-			}
-		}
-		if(n==5) {
-			for(int a=0;a<s.getSave5();a++) {
-				System.out.println(stack.pop());
-			}
-		}
-		
+
 		//[현재 페이지 표시] 패널 생성 및 설정
 		page.setBounds(1100-143,25,108,30);
 		page.setLayout(null);
@@ -274,7 +209,7 @@ public class Screen_3 extends JFrame {
 		//티켓(라벨, 버튼) 설정
 		// -영화명: ticketInfo1
 		// -상영 시간, 매수, 좌석: ticketInfo2
-		// -좌석 정보: ticketInfo3_1, ticketInfo3_2, ticketInfo3_3
+		// -좌석 정보: ticketInfo3_1, ticketInfo3_2, ticketInfo3_3, ticketInfo3_4
 		//포스터 이미지(버튼) poster
 		
 		//영화별 제목, 포스터(이미지) 및 상영시간 정보
@@ -332,29 +267,28 @@ public class Screen_3 extends JFrame {
 		ticketInfo2.setForeground(Color.BLACK);
 		ticketF.add(ticketInfo2);	
 		
-		//stack과 반복문을 이용한 좌석 배정
+//		//stack과 반복문을 이용한 좌석 배정
 		
-		String text1 = "";
-		String text2 = "";
-		String text3 = "";
-		String text4 = "";
+		String text1 = t1;
+		String text2 = t2;
+		String text3 = t3;
+		String text4 = t4;
+//		
+//		for(int i=0;i<inner+outer;i++) {
+//			int k = i+1;
+//			// 좌석 여러 개인 경우 자리 ~로 시작과 끝만 표시
+//			//하려고 했으나 ABCD열을 고려하려면 너무 복잡해져서 실패
+////			if(i==0) {
+////				text1 = stack.pop();
+////			}else if(i>0 && i<inner+outer-1) {
+////				stack.pop();
+////			}else if(i == inner+outer-1) {
+////				text2 = stack.pop();
+////			}else {	
+////			}
+
 		
-		for(int i=0;i<inner+outer;i++) {
-			int k = i+1;
-			if(k<11) {
-				text1 += stack.pop();
-				text1 += " ";
-			}else if(k>10 && k<21) {
-				text2 += stack.pop();
-				text2 += " ";
-			}else if(k>20 && k<31) {							
-				text3 += stack.pop();
-				text3 += " ";
-			}else {
-				text4 += stack.pop();
-				text4 += " ";
-			}
-		}
+		
 		//10매 이하
 		ticketInfo3_1.setText(text1);
 		ticketInfo3_1.setBounds(260,138,345,170);
@@ -404,33 +338,17 @@ public class Screen_3 extends JFrame {
 		poster.setBounds(6, 31, 190, 200);
 		poster.setBorderPainted(false);
 		poster.setFocusPainted(false);
+		poster.setBackground(null);			//버튼 색 오류 방지
 		//poster.setEnabled(false);
 		ticketF.add(poster);
 	
 		finish.addActionListener(new ActionListener() {
 			
 			@Override
-
-               public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
 				
-				if(n==1) {
-				s.setSave1(s.getSave1()+inner+outer);
-				}
-				if(n==2) {
-					s.setSave2(s.getSave2()+inner+outer);
-					}
-				if(n==3) {
-					s.setSave3(s.getSave3()+inner+outer);
-					}
-				if(n==4) {
-					s.setSave4(s.getSave4()+inner+outer);
-					}
-				if(n==5) {
-					s.setSave5(s.getSave5()+inner+outer);
-					}
-                   new Screen_1(s);
-  
-                   setVisible(false);
+                new Screen_1(s);
+                setVisible(false);
 			}
 		});
 		
