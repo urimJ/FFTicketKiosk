@@ -81,73 +81,7 @@ public class Screen_3 extends JFrame {
 		//좌석 배정
 		Seat s = save;		// Seat 생성자 s
 		
-//		//stack
-//		if(stack.isEmpty()){
-//			stack.push("A8");
-//			stack.push("A7");
-//			stack.push("A6");
-//			stack.push("A5");
-//			stack.push("A4");
-//			stack.push("A3");
-//			stack.push("A2");
-//			stack.push("A1");
-//			
-//			stack.push("B1");
-//			stack.push("B2");
-//			stack.push("B3");
-//			stack.push("B4");
-//			stack.push("B5");
-//			stack.push("B6");
-//			stack.push("B7");
-//			stack.push("B8");
-//			
-//			stack.push("C8");
-//			stack.push("C7");
-//			stack.push("C6");
-//			stack.push("C5");
-//			stack.push("C4");
-//			stack.push("C3");
-//			stack.push("C2");
-//			stack.push("C1");
-//			
-//			stack.push("D1");
-//			stack.push("D2");
-//			stack.push("D3");
-//			stack.push("D4");
-//			stack.push("D5");
-//			stack.push("D6");
-//			stack.push("D7");
-//			stack.push("D8");
-//		}
-//		
-//		
-//		//영화 별로 배정된 좌석 정보를 저장
-//		if(n==1) {
-//			for(int a=0;a<s.getSave1();a++) {
-//				System.out.println(stack.pop());
-//			}
-//		}
-//		if(n==2) {
-//			for(int a=0;a<s.getSave2();a++) {
-//				System.out.println(stack.pop());
-//			}
-//		}
-//		if(n==3) {
-//			for(int a=0;a<s.getSave3();a++) {
-//				System.out.println(stack.pop());
-//			}
-//		}
-//		if(n==4) {
-//			for(int a=0;a<s.getSave4();a++) {
-//				System.out.println(stack.pop());
-//			}
-//		}
-//		if(n==5) {
-//			for(int a=0;a<s.getSave5();a++) {
-//				System.out.println(stack.pop());
-//			}
-//		}
-		
+
 		//[현재 페이지 표시] 패널 생성 및 설정
 		page.setBounds(1100-143,25,108,30);
 		page.setLayout(null);
@@ -275,7 +209,7 @@ public class Screen_3 extends JFrame {
 		//티켓(라벨, 버튼) 설정
 		// -영화명: ticketInfo1
 		// -상영 시간, 매수, 좌석: ticketInfo2
-		// -좌석 정보: ticketInfo3_1, ticketInfo3_2, ticketInfo3_3
+		// -좌석 정보: ticketInfo3_1, ticketInfo3_2, ticketInfo3_3, ticketInfo3_4
 		//포스터 이미지(버튼) poster
 		
 		//영화별 제목, 포스터(이미지) 및 상영시간 정보
@@ -334,7 +268,7 @@ public class Screen_3 extends JFrame {
 		ticketF.add(ticketInfo2);	
 		
 //		//stack과 반복문을 이용한 좌석 배정
-//		
+		
 		String text1 = t1;
 		String text2 = t2;
 		String text3 = t3;
@@ -350,23 +284,9 @@ public class Screen_3 extends JFrame {
 ////				stack.pop();
 ////			}else if(i == inner+outer-1) {
 ////				text2 = stack.pop();
-////			}else {
-////				
+////			}else {	
 ////			}
-//			if(k<11) {
-//				text1 += stack.pop();
-//				text1 += " ";
-//			}else if(k>10 && k<21) {
-//				text2 += stack.pop();
-//				text2 += " ";
-//			}else if(k>20 && k<31) {							
-//				text3 += stack.pop();
-//				text3 += " ";
-//			}else {
-//				text4 += stack.pop();
-//				text4 += " ";
-//			}
-//		}
+
 		
 		
 		//10매 이하
@@ -425,41 +345,9 @@ public class Screen_3 extends JFrame {
 		finish.addActionListener(new ActionListener() {
 			
 			@Override
-				// 스택이 빈 경우(매진 시) 예외처리: -100으로 값을 저장
-               public void actionPerformed(ActionEvent e) {
-//				
-//				if(n==1) {
-//					s.setSave1(s.getSave1()+inner+outer);
-//					if(stack.isEmpty()==true) {
-//						s.setSave1(-100);
-//					}
-//				}
-//				if(n==2) {
-//					s.setSave2(s.getSave2()+inner+outer);
-//					if(stack.isEmpty()==true) {
-//						s.setSave2(-100);
-//					}
-//				}
-//				if(n==3) {
-//					s.setSave3(s.getSave3()+inner+outer);
-//					if(stack.isEmpty()==true) {
-//						s.setSave3(-100);
-//					}
-//				}
-//				if(n==4) {
-//					s.setSave4(s.getSave4()+inner+outer);
-//					if(stack.isEmpty()==true) {
-//						s.setSave4(-100);
-//					}
-//				}
-//				if(n==5) {
-//					s.setSave5(s.getSave5()+inner+outer);
-//					if(stack.isEmpty()==true) {
-//						s.setSave5(-100);
-//					}
-//				}
+            public void actionPerformed(ActionEvent e) {
+				
                 new Screen_1(s);
-  
                 setVisible(false);
 			}
 		});

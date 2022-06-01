@@ -790,7 +790,7 @@ public class Screen_2 extends JFrame {
 			stack.push("D8");
 		}
 		
-		//영화 별로 배정된 좌석 정보를 저장
+		//영화 별로 이미 배정된 좌석을 제외하기
 		if(n==1) {
 			for(int k=0;k<s.getSave1();k++) {
 				System.out.println(stack.pop());
@@ -903,17 +903,12 @@ public class Screen_2 extends JFrame {
 	}
 
 	class outer_MyActionListener implements ActionListener{
-
-
-
 		@Override
-
 		public void actionPerformed(ActionEvent e) {
 
 			// TODO Auto-generated method stub
 
 			plus1_button=(JButton)(e.getSource());
-
 			minus1_button=(JButton)(e.getSource());
 
 			if(plus1_button.getText().equals("+")) {

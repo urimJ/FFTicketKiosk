@@ -300,7 +300,7 @@ public class Screen_1 extends JFrame {
       
       //좌석 매진 시 예외 처리
       String sO = "매진";		//soldOut
-      if(save1.getSave1()==-100) {			//OR Stack empty
+      if(save1.getSave1()==-100) {			
     	  btn_img_1.setEnabled(false);
     	  btn_img_1.setText(sO);
       }

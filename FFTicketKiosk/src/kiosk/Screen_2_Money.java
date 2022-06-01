@@ -338,7 +338,7 @@ public class Screen_2_Money extends JFrame {
 		//back_button.setBackground(bColor);
 
 		back_button.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 21));
-		//±Û¾¾ »ö±ò Èò»öÀ¸·Î ¼öÁ¤(Screen_2¿¡¼­µµ ¼öÁ¤ÇØ¾ß ÇÔ)	(ÆË¾÷)
+		//(ÆË¾÷)
 		back_button.setForeground(Color.white);
 
 		//ÆË¾÷
